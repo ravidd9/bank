@@ -4,14 +4,14 @@ import './App.css';
 import Transactions from './components/Transactions';
 import Operations from './components/Operations';
 import axios from 'axios'
-import Transaction from '../server/models/Transaction'
 
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      transactions: await this.getTransactions()
+      transactions: [],
+      balance: 0
     }
   }
 
@@ -21,29 +21,44 @@ class App extends Component {
     return sum
   }
 
-  getTransactions = async () => {return await axios.get(`http://localhost:8000/transections`)}
+  componentDidMount = async () => {
+    let transactions = await this.getTranscations()
+    this.setState({ transactions })
+    const balance = this.getBalance()
+    this.setState({ balance })
+  }
+
+  getTranscations = async () => {
+    const transactions = await axios.get(`http://localhost:8000/transactions`)
+    const balance = this.getBalance()
+    this.setState({ balance })
+    return transactions.data
+  }
+
 
   addTransaction = async (operation, action) => {
     if (action == "withdraw") {
       operation.amount = (0 - operation.amount)
     }
-    let transaction = new Transaction({
+
+    let transaction = {
       amount: operation.amount,
       vendor: operation.vendor,
       category: operation.category
-    })
-    let transactions = await axios.post(`http://localhost:8000/transaction`, transaction, function () {
-      console.log("transaction sent!")
-    })
+    }
 
+    await axios.post(`http://localhost:8000/transaction`, transaction)
+    let transactions = await this.getTranscations()
+    console.log(transactions)
     this.setState({ transactions })
   }
 
 
   render() {
+    let balance = this.state.balance
     return (
-      <div>
-        <p>balance: {this.getBalance()}</p>
+      <div id="app">
+        <div id="balance" className={`${balance > 0 ? "positive" : "negative"}`}>Balance:  {balance}$</div>
         <Operations addTransaction={this.addTransaction} />
         <Transactions transactions={this.state.transactions} />
       </div>

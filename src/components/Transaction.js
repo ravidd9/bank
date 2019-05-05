@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 
 class Transaction extends Component {
     render() {
+        let amount = this.props.transaction.amount
         return (
-            <div>
-                <p>Amount: {this.props.transaction.amount}</p>
-                <p>Vendor: {this.props.transaction.vendor}</p>
-                <p>Category: {this.props.transaction.category}</p>
+            <div className={`transaction ${amount > 0 ? "deposit" : "withdraw"}`}>
+                <span className="amount">{amount}$</span>
+                <span className="category">{this.props.transaction.category}</span>
+                <span className="vendor">{this.props.transaction.vendor}</span>
             </div>
         );
     }

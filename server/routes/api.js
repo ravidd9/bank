@@ -10,10 +10,11 @@ router.get(`/transactions`, function(req, res){
     })
 })
 
-router.post(`/transaction`, function (req, res) {
+router.post(`/transaction`, async function (req, res) {
     let body = req.body
     let t1 = new Transaction(body)
-    t1.save()
+    await t1.save()
+    res.send(t1)
 })
 
 module.exports = router

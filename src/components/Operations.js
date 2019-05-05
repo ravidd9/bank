@@ -18,7 +18,8 @@ class Operations extends Component {
 
     render() {
         return (
-            <div>
+            <div id="operations">
+                <div id="enter">Enter Operation</div>
                 <input type="number" placeholder="ENTER AMOUNT" id="amount" value={this.state.amount} onChange={this.changeValue}/>
                 <input type="text" placeholder="ENTER VENDOR" id="vendor" value={this.state.vendor} onChange={this.changeValue}/>
                 <input type="text" placeholder="ENTER CATEGORY" id="category" value={this.state.category} onChange={this.changeValue}/>

@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: Tahoma;
 }
 
 .App-logo {
@@ -27,7 +28,94 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+#app {
+  display: grid;
+  grid-template-areas:
+    "b b"
+    "t o";
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  border: 3px solid black;
+  border-radius: 25px;
+  margin: 5%;
+  padding: 5%;
+  background-color: rgb(230, 230, 211);
+}
+
+#balance {
+  grid-area: b;
+  font-size: 40px;
+  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+.positive {
+  color: green;
+
+}
+
+.negative {
+  color: red;
+}
+
+#operations {
+  grid-area: o;
+  margin: 10px;
+}
+
+#transactions {
+  grid-area: t;
+  height: 100%;
+  width: 100%;
+}
+
+#enter {
+  font-size: 30px;
+  margin-left: 20%
+}
+
+input {
+  display: block;
+  font-size: 30px;
+  margin: 5px;
+}
+
+button {
+  margin-left: 20%;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.transaction {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 1px solid black;
+  margin: 10px;
+  padding: 10px;
+}
+
+.deposit {
+  background-color: rgb(115, 194, 115);
+}
+
+.withdraw {
+  background-color: rgb(206, 129, 129);
+}
+
+.amount {}
+
+.vendor {
+  justify-self: right;
+
+}
+
+.category {
+  justify-self: center;
 }

@@ -4,7 +4,7 @@ import Transaction from './Transaction';
 class Transactions extends Component {
     render() {
         return (
-            <div>
+            <div id="transactions">
                 {this.props.transactions.map((t,i) => <Transaction key={i} transaction={t} />)}
             </div>
         );
