@@ -15,28 +15,28 @@ class App extends Component {
     }
   }
 
-  getBalance = () => {
+  getBalance = async () => {
     let sum = 0
     this.state.transactions.forEach(t => sum += parseInt(t.amount))
-    return sum
+    await this.setState({ balance : sum})
+    
   }
 
   componentDidMount = async () => {
-    let transactions = await this.getTranscations()
-    this.setState({ transactions })
-    const balance = this.getBalance()
-    this.setState({ balance })
+    let transactions = await this.getTransactions()
+    await this.setState({ transactions })
+    await this.getBalance()
   }
 
-  getTranscations = async () => {
+  getTransactions = async () => {
     const transactions = await axios.get(`http://localhost:8000/transactions`)
-    const balance = this.getBalance()
-    this.setState({ balance })
+    await this.getBalance()
     return transactions.data
   }
-
-
+  
+  
   addTransaction = async (operation, action) => {
+    debugger;
     if (action == "withdraw") {
       operation.amount = (0 - operation.amount)
     }
@@ -48,14 +48,15 @@ class App extends Component {
     }
 
     await axios.post(`http://localhost:8000/transaction`, transaction)
-    let transactions = await this.getTranscations()
+    let transactions = await this.getTransactions()
     console.log(transactions)
-    this.setState({ transactions })
+    await this.setState({ transactions })
   }
 
 
   render() {
     let balance = this.state.balance
+    console.log(balance)
     return (
       <div id="app">
         <div id="balance" className={`${balance > 0 ? "positive" : "negative"}`}>Balance:  {balance}$</div>
