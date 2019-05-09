@@ -80,12 +80,21 @@
 
 #breakdown{
   grid-area: c;
+  font-size: 20px;
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 20px;
+  padding: 10px;
 }
 
-#categories{
-  display: grid;
-  grid-template-columns: 1fr;
+#breakdown>span{
+  margin-right: 50px;
+}
 
+.categories{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  cursor: pointer;
 }
 
 #enter {

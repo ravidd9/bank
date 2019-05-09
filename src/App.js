@@ -54,7 +54,6 @@ class App extends Component {
 
   render() {
     let balance = this.getBalance()
-    console.log(balance)
     return (
       <div id="app">
         <div id="balance" className={`${balance > 0 ? "positive" : "negative"}`}>Balance:  {balance}$</div>
