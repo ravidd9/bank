@@ -38,7 +38,8 @@
   display: grid;
   grid-template-areas:
     "b b"
-    "t o";
+    "t o"
+    "t c";
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   align-items: center;
@@ -77,6 +78,16 @@
   width: 100%;
 }
 
+#breakdown{
+  grid-area: c;
+}
+
+#categories{
+  display: grid;
+  grid-template-columns: 1fr;
+
+}
+
 #enter {
   font-size: 30px;
   margin-left: 20%
@@ -89,7 +100,6 @@ input {
 }
 
 button {
-  margin-left: 20%;
   font-size: 20px;
   padding: 5px;
 }
@@ -110,7 +120,6 @@ button {
   background-color: rgb(206, 129, 129);
 }
 
-.amount {}
 
 .vendor {
   justify-self: right;
@@ -120,3 +129,25 @@ button {
 .category {
   justify-self: center;
 }
+
+#buttons{
+  display: grid;
+  grid-template-areas: 
+  "d w"
+  "i i";
+}
+
+#deposit{
+  grid-area: d;
+}
+#withdraw{
+  grid-area: w;
+}
+#below500{
+  grid-area: i;
+  color: red;
+  font-weight: bold;
+  font-size: 30px;
+  justify-content: center;
+}
+
