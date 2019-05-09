@@ -10,33 +10,28 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      transactions: [],
-      balance: 0
+      transactions: []
     }
   }
 
-  getBalance = async () => {
+  getBalance = () => {
     let sum = 0
     this.state.transactions.forEach(t => sum += parseInt(t.amount))
-    await this.setState({ balance : sum})
+    return sum
     
   }
 
   componentDidMount = async () => {
     let transactions = await this.getTransactions()
     await this.setState({ transactions })
-    await this.getBalance()
   }
 
   getTransactions = async () => {
     const transactions = await axios.get(`http://localhost:8000/transactions`)
-    await this.getBalance()
     return transactions.data
   }
   
-  
   addTransaction = async (operation, action) => {
-    debugger;
     if (action == "withdraw") {
       operation.amount = (0 - operation.amount)
     }
@@ -49,13 +44,11 @@ class App extends Component {
 
     await axios.post(`http://localhost:8000/transaction`, transaction)
     let transactions = await this.getTransactions()
-    console.log(transactions)
     await this.setState({ transactions })
   }
 
-
   render() {
-    let balance = this.state.balance
+    let balance = this.getBalance()
     console.log(balance)
     return (
       <div id="app">
