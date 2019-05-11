@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import Category from './Category';
 
 class Breakdown extends Component {
+    constructor(){
+        super()
+        this.state = {
+            category: []
+        }
+    }
 
 
     setByCategories = () => {
@@ -17,7 +23,7 @@ class Breakdown extends Component {
     }
 
     expandCategory = () =>{
-
+        
     }
 
     render() {
